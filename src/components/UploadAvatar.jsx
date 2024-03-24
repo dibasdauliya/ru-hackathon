@@ -76,6 +76,10 @@ export default function UploadAvatar() {
         </main>
         {/* login button */}
 
+        <Link to='/setgoal'>
+          <center>Set Goal</center>
+        </Link>
+
         <button
           className='bg-violet-800 text-white p-4 rounded-lg mt-10 z-10'
           onClick={() => loginWithRedirect()}>
