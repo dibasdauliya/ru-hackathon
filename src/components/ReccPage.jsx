@@ -215,9 +215,9 @@ const ReccPage = ({
   }
 
   return (
-    <div>
-      <h2 className='text-2xl font-bold mb-4'>Daily Recommendations</h2>
-      <div className='mb-8 border p-3 cursor-pointer' onClick={handleCardClick}>
+    <div className = 'bg-slate-100 px-5 py-10 rounded-md shadow-sm'>
+      <h2 className='text-2xl font-bold mb-4 text-center'>Daily Recommendations</h2>
+      <div className='mb-8 p-3 cursor-pointer rounded-md shadow-sm bg-slate-50' onClick={handleCardClick}>
         <h3 className='text-xl font-bold mb-2'>Easy</h3>
         <ul>
           {easyRecs.map((rec, index) => (
@@ -227,7 +227,7 @@ const ReccPage = ({
           ))}
         </ul>
       </div>
-      <div className='mb-8 border p-3 cursor-pointer' onClick={handleCardClick}>
+      <div className='mb-8 p-3 cursor-pointer rounded-md shadow-sm bg-slate-50' onClick={handleCardClick}>
         <h3 className='text-xl font-bold mb-2'>Medium</h3>
         <ul>
           {mediumRecs.map((rec, index) => (
@@ -237,7 +237,7 @@ const ReccPage = ({
           ))}
         </ul>
       </div>
-      <div className='mb-8 border p-3 cursor-pointer' onClick={handleCardClick}>
+      <div className='mb-8 p-3 cursor-pointer rounded-md shadow-sm bg-slate-50' onClick={handleCardClick}>
         <h3 className='text-xl font-bold mb-2'>Hard</h3>
         <ul>
           {hardRecs.map((rec, index) => (
