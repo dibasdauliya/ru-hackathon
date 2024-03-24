@@ -131,7 +131,7 @@ export default function MainPage() {
               className='w-30 h-30 rounded-full border'
             />
             <span className='text-4xl absolute top-0 -right-2'>
-              {calculateWaterIntakeRatio() > 0.5 ? '😊' : '😢'}
+              {calculateWaterIntakeRatio() > 0.9 ? '😊' : '😢'}
             </span>
           </div>
 
