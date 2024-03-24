@@ -52,15 +52,16 @@ export default function UploadAvatar() {
 
             <p className='text-2xl'>Create your avatar</p>
 
-            <p className='flex gap-4 text-3xl my-4'>
-              <span>😊</span>
-              <span>👦</span>
-              <span>👧</span>
-              <span>👦🏿</span>
-              <span>👧🏿</span>
-              <span>👦🏾</span>
-              <span>👧🏽</span>
-              <span>👦🏽</span>
+            {/* default is  😊.*/}
+            <p className='flex gap-4 text-3xl my-4 [&>*]:transition-transform'>
+              <span className='hover:scale-125 cursor-pointer'>😊</span>
+              <span className='hover:scale-125 cursor-pointer'>👦</span>
+              <span className='hover:scale-125 cursor-pointer'>👧</span>
+              <span className='hover:scale-125 cursor-pointer'>👦🏿</span>
+              <span className='hover:scale-125 cursor-pointer'>👧🏿</span>
+              <span className='hover:scale-125 cursor-pointer'>👦🏾</span>
+              <span className='hover:scale-125 cursor-pointer'>👧🏽</span>
+              <span className='hover:scale-125 cursor-pointer'>👦🏽</span>
             </p>
 
             <p className='mt-4  ml-20'>
