@@ -4,7 +4,9 @@ import { useEffect, useState } from 'react'
 import PlusIcon from '../icons/plus'
 
 export default function MainPage() {
-  const [events, setEvents] = useState([])
+  const { user, isAuthenticated, isLoading } = useAuth0()
+
+  const [username, setUsername] = useState('')
 
   const [dialogDetails, setDialogDetails] = useState({
     open: false,
@@ -13,44 +15,117 @@ export default function MainPage() {
     frequency: 0
   })
 
-  const [timeDetail, setTime] = useState('')
+  const [timeDetail, setTime] = useState({ start: '', end: '' })
 
   const recTasks = [
     {
       title: 'Drink Water',
       description: '2 glasses',
+      duration: '5 minutes',
       frequency: 4
     },
     {
       title: 'Cardio',
-      description: '30 minutes',
+      description: "Fuel up your heart's health",
+      duration: '30 minutes',
       frequency: 3
     },
     {
       title: 'Yoga',
-      description: '1 hour',
+      description: 'Relax your mind and body',
+      duration: '30 minutes',
       frequency: 2
     }
   ]
 
   const [tasks, setTasks] = useState([])
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      setUsername(user.name)
+    }
+  }, [isAuthenticated, user])
+
+  if (isLoading) {
+    return <div>Loading ...</div>
+  }
+
   function handleSetTask(e) {
     e.preventDefault()
 
-    console.log({ val: e.target })
+    setTasks((prevTasks) => {
+      const isColliding = prevTasks.some((task) => {
+        const taskStartTime = new Date(`1970-01-01T${task.startTime}Z`)
+        const taskEndTime = new Date(`1970-01-01T${task.endTime}Z`)
+        const newTaskStartTime = new Date(`1970-01-01T${timeDetail.start}Z`)
+        const newTaskEndTime = new Date(`1970-01-01T${timeDetail.end}Z`)
 
-    setTasks([
-      ...tasks,
-      {
-        title: dialogDetails.title,
-        description: dialogDetails.description,
-        frequency: dialogDetails.frequency,
-        time: timeDetail
+        // Check if new task collides with existing task
+        if (
+          (newTaskStartTime >= taskStartTime &&
+            newTaskStartTime <= taskEndTime) ||
+          (newTaskEndTime >= taskStartTime && newTaskEndTime <= taskEndTime)
+        ) {
+          return true
+        }
+
+        return false
+      })
+
+      if (isColliding) {
+        // Show error message
+        alert('Task time collides with existing task')
+        return prevTasks
       }
-    ])
+
+      return [
+        ...prevTasks,
+        {
+          title: dialogDetails.title,
+          description: dialogDetails.description,
+          startTime: timeDetail.start,
+          endTime: timeDetail.end
+        }
+      ]
+    })
+
+    // wanna exclude those which collide with same time. also don't inclue past time, only future time. don't add anything in 30 mins after that time. give break
 
     setDialogDetails({ ...dialogDetails, open: false })
+  }
+
+  function getEndTime(startTime, duration) {
+    // Check if startTime and duration are valid
+    if (!/^([01]\d|2[0-3]):([0-5]\d)$/.test(startTime) || isNaN(duration)) {
+      return ''
+    }
+
+    // Convert start time and duration to Date objects
+    const start = new Date(`1970-01-01T${startTime}Z`)
+    const end = new Date(start.getTime() + duration * 60000)
+
+    // Convert end time to a time string
+    const endTime = end.toISOString().slice(11, 16)
+
+    return endTime
+  }
+
+  function calculateWaterIntakeRatio() {
+    const waterIntake = tasks.filter(
+      (task) => task.title === 'Drink Water'
+    ).length
+    const totalWaterIntake = recTasks.find(
+      (task) => task.title == 'Drink Water'
+    ).frequency
+
+    return waterIntake / totalWaterIntake
+  }
+
+  //   task.frequency -
+  // tasks.filter((t) => t.title == task.title).length
+
+  function getHowManyTimesTaskIsLeft(task) {
+    return task.frequency - tasks.filter((t) => t.title == task.title).length
   }
 
   return (
@@ -63,14 +138,23 @@ export default function MainPage() {
             <img
               src='https://randomuser.me/api/portraits/men/30.jpg'
               alt='avatar'
-              className='w-20 h-20 rounded-full border'
+              className='w-30 h-30 rounded-full border'
             />
-            <span className='text-2xl absolute top-0 -right-2'>😊</span>
+            <span className='text-4xl absolute top-0 -right-2'>
+              {calculateWaterIntakeRatio() > 0.5 ? '😊' : '😢'}
+            </span>
           </div>
 
-          <h1 className='text-3xl font-semibold'>
-            Welcome back, <span className='text-violet-500'>John</span>!
-          </h1>
+          <div>
+            <h1 className='text-3xl font-semibold'>
+              Welcome back, <span className='text-violet-500'>{username}</span>!
+            </h1>
+            <p>
+              {calculateWaterIntakeRatio() > 0.5
+                ? 'You are doing great!'
+                : 'You need to drink more water!'}
+            </p>
+          </div>
         </header>
 
         {/* current date & time */}
@@ -91,17 +175,12 @@ export default function MainPage() {
           </p>
         </section>
 
-        {/* drinking water, excercise staus of user*/}
-
         <section className='flex gap-4 mt-4'>
           <div className='flex-1'>
-            <h2 className='text-xl font-semibold'>Daily Water Intake</h2>
-            <p className='text-gray-600'>3/8 glasses</p>
-          </div>
-
-          <div className='flex-1'>
-            <h2 className='text-xl font-semibold'>Exercise</h2>
-            <p className='text-gray-600'>1/3 workouts</p>
+            <h2 className='text-xl font-semibold'>Daily Water Intake 💧</h2>
+            <p className='text-gray-600'>
+              {calculateWaterIntakeRatio() * 100}% completed
+            </p>
           </div>
         </section>
 
@@ -124,15 +203,42 @@ export default function MainPage() {
                 <p className='text-gray-600'>
                   {dialogDetails.frequency} times a day
                 </p>
+                <p className='text-gray-600'>
+                  {dialogDetails.duration} duration
+                </p>
               </div>
 
               {/* set time */}
-              <input
-                type='time'
-                className='border p-2 rounded-lg w-full mt-4'
-                placeholder='Set Time'
-                onChange={(e) => setTime(e.target.value)}
-              />
+              <label htmlFor='time' className='block mt-4'>
+                Set Start Time
+                <input
+                  type='time'
+                  className='border p-2 rounded-lg w-full mt-4'
+                  placeholder='Set Time'
+                  onChange={(e) => {
+                    const duration = parseInt(
+                      dialogDetails.duration.split(' ')[0]
+                    )
+                    setTime({
+                      start: e.target.value,
+                      end: getEndTime(e.target.value, duration)
+                    })
+                  }}
+                />
+              </label>
+
+              {/* set end time */}
+              <label htmlFor='time' className='block mt-4'>
+                End Time (Start Time + Duration)
+                <input
+                  type='time'
+                  className='border disabled:bg-gray-100 p-2 rounded-lg w-full mt-4'
+                  placeholder='Set Time'
+                  disabled
+                  // set time [duration] mins after start time
+                  value={timeDetail.end}
+                />
+              </label>
 
               <div className='flex gap-2'>
                 <button
@@ -155,34 +261,41 @@ export default function MainPage() {
 
         <section className='mt-6'>
           <h2 className='text-xl font-semibold'>Recommended Tasks</h2>
-          <div className='grid grid-cols-2 gap-4 mt-4'>
+          <div className='grid grid-cols-2 gap-8 mt-4'>
             {recTasks.map((task, index) => (
               <div
                 key={index}
                 className='bg-gray-100 p-4 rounded-md flex justify-between gap-2 relative'>
-                <span className='absolute -left-3 -top-3 bg-white text-black p-1 w-8 h-8 flex items-center justify-center rounded-full border'>
-                  {task.frequency -
-                    tasks.filter((t) => t.title == task.title).length}
-                  x
-                </span>
+                {getHowManyTimesTaskIsLeft(task) > 0 ? (
+                  <span className='absolute -left-3 -top-3 bg-white text-black p-1 w-8 h-8 flex items-center justify-center rounded-full border'>
+                    {getHowManyTimesTaskIsLeft(task)}x
+                  </span>
+                ) : null}
 
                 <div>
                   <h3 className='text-lg font-semibold'>{task.title}</h3>
                   <p className='text-gray-600'>{task.description}</p>
                 </div>
 
-                <button
-                  className='bg-violet-800 text-white p-2 rounded-lg mt-2'
-                  onClick={() =>
-                    setDialogDetails({
-                      open: true,
-                      title: task.title,
-                      description: task.description,
-                      frequency: task.frequency
-                    })
-                  }>
-                  <PlusIcon />
-                </button>
+                {getHowManyTimesTaskIsLeft(task) > 0 ? (
+                  <button
+                    className='bg-violet-800 text-white p-2 rounded-lg mt-2'
+                    onClick={() =>
+                      setDialogDetails({
+                        open: true,
+                        title: task.title,
+                        description: task.description,
+                        frequency: task.frequency,
+                        duration: task.duration
+                      })
+                    }>
+                    <PlusIcon />
+                  </button>
+                ) : (
+                  <span className='bg-green-500 text-white p-2 rounded-lg mt-2'>
+                    Done
+                  </span>
+                )}
               </div>
             ))}
           </div>
@@ -199,8 +312,12 @@ export default function MainPage() {
                   key={index}
                   className='bg-gray-100 p-4 rounded-md flex gap-4 items-center'>
                   <div>
-                    <span className='text-lg'>{task.time} </span>
+                    <span>
+                      {task.startTime} - {task.endTime}{' '}
+                    </span>
                   </div>
+
+                  <span className='text-2xl text-gray-300'>|</span>
 
                   <div>
                     <h3 className='text-lg font-semibold'>{task.title}</h3>

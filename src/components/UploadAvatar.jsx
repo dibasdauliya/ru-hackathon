@@ -44,7 +44,7 @@ export default function UploadAvatar() {
           </ul>
         </nav>
 
-        <main className='flex mx-auto text-black'>
+        <main className='flex mx-auto text-black mb-12'>
           <form
             method='post'
             className={`max-w-4xl border-2 border-violet-500 border-dashed mt-20 w-full p-4 rounded-md ${
@@ -76,15 +76,11 @@ export default function UploadAvatar() {
         </main>
         {/* login button */}
 
-        <Link to='/setgoal'>
-          <center>Set Goal</center>
+        <Link
+          to='/setgoal'
+          className='bg-violet-800 text-white p-4 rounded-lg mt-10'>
+          Set Goal
         </Link>
-
-        <button
-          className='bg-violet-800 text-white p-4 rounded-lg mt-10 z-10'
-          onClick={() => loginWithRedirect()}>
-          Get Started
-        </button>
       </div>
     </div>
   )
