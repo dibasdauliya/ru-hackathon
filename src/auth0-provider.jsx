@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 export const Auth0ProviderWithNavigate = ({ children }) => {
   const navigate = useNavigate()
 
-  const domain = 'dev-5338u8r41xv1ecdv.us.auth0.com'
-  const clientId = 'EoAxgW0UNatlep1ne0K9oscBo4xy7r1x'
+  const domain = import.meta.env.VITE_AUTH0_DOMAIN
+  const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID
   const redirectUri = window.location.origin
 
   const onRedirectCallback = (appState) => {
