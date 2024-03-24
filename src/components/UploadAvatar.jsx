@@ -2,6 +2,7 @@ import { useState } from 'react'
 import PhotoIcon from '../icons/photo'
 import { useRef } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
+import {Link} from "react-router-dom"
 
 export default function UploadAvatar() {
   const [isDropping, setIsDropping] = useState(false)
@@ -72,6 +73,12 @@ export default function UploadAvatar() {
           </form>
         </main>
         {/* login button */}
+
+        <Link to="/setgoal">
+        <center>
+        Set Goal
+          </center>
+        </Link>
 
         <button
           className='bg-violet-800 text-white p-4 rounded-lg mt-10 z-10'
