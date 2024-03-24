@@ -43,3 +43,24 @@ This project provided a comprehensive learning experience across technical, huma
 ## What's next for wefit
 
 Implementing a 3d character creator engine so people have an active role in creating their avatars. A more accurate recommendation engine tailored to individual user preferences and patterns.
+
+## Installation
+
+1. Clone the repository running `git clone https://github.com/dibasdauliya/ru-hackathon`
+2. Run `npm install` to install dependencies
+3. Create a `.env` file in the root directory and add the following environment variables
+
+```bash
+VITE_AUTH0_DOMAIN=
+VITE_AUTH0_CLIENT_ID=
+```
+
+4. Run `npm start` to start the development server
+5. Open `http://localhost:3000` in your browser.
+
+## Contributors
+
+- [Dibas Dauliya]('https://github.com/dibasdauliya')
+- [Gaurav Tiwari]('https://github.com/koshishtiwari)
+- [Narayan Khanal]('https://github.com/Nkhanal2002)
+- [Suman Shah]('https://github.com/sumanshah7)
