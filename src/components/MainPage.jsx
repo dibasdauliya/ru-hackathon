@@ -116,7 +116,7 @@ export default function MainPage() {
   }
 
   return (
-    <div className='w-screen min-h-screen bg-gym-pic relative bg-cover p-8'>
+    <div className='w-screen min-h-screen relative bg-cover p-8'>
       <main className='p-4 bg-white rounded-md mx-auto max-w-3xl'>
         {/* avatar image with emoji to indicate reaction */}
 

@@ -24,7 +24,7 @@ export default function UploadAvatar() {
   }
 
   return (
-    <div className='h-screen w-screen bg-gym-pic bg-cover bg-black relative'>
+    <div className='h-screen w-screen bg-cover bg-black relative'>
       <div className='-z-1 pointer-events-none absolute inset-0 bg-black/60'></div>
 
       <div className='max-w-7xl p-20 mx-auto relative z-10'>
