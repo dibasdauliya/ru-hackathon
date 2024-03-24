@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function App() {
+  const { loginWithRedirect } = useAuth0()
+
   return (
     <div className='h-screen w-screen bg-hero-pattern bg-cover'>
       <nav className='text-white max-w-7xl p-20 mx-auto'>
@@ -25,11 +27,11 @@ function App() {
           more!
         </p>
         <div className='flex justify-center pt-10'>
-          <Link
-            to='upload-avatar'
+          <button
+            onClick={() => loginWithRedirect()}
             className='bg-violet-800 text-white p-4 rounded-lg'>
             Get Started
-          </Link>
+          </button>
         </div>
       </main>
     </div>

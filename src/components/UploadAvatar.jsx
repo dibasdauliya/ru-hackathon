@@ -2,6 +2,7 @@ import { useState } from 'react'
 import PhotoIcon from '../icons/photo'
 import { useRef } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
+import { Link } from 'react-router-dom'
 
 export default function UploadAvatar() {
   const [isDropping, setIsDropping] = useState(false)
@@ -29,9 +30,11 @@ export default function UploadAvatar() {
     <div className='h-screen w-screen bg-gym-pic bg-cover bg-black relative'>
       <div className='-z-1 pointer-events-none absolute inset-0 bg-black/60'></div>
 
-      <div className='max-w-7xl p-20 mx-auto [&>*]:z-10'>
-        <nav className='text-white flex w-full justify-between [&>*]:z-10'>
-          <strong className='text-2xl text-violet-500'>FitoFriend</strong>
+      <div className='max-w-7xl p-20 mx-auto relative z-10'>
+        <nav className='text-white flex w-full justify-between'>
+          <Link to='/'>
+            <a className='text-2xl font-semibold text-violet-500'>FitoFriend</a>
+          </Link>
 
           <ul className='flex gap-3'>
             <li className='underline font-semibold'>Home</li>
@@ -41,7 +44,7 @@ export default function UploadAvatar() {
           </ul>
         </nav>
 
-        <main className='flex mx-auto [&>*]:z-10 text-black'>
+        <main className='flex mx-auto text-black'>
           <form
             method='post'
             className={`max-w-4xl border-2 border-violet-500 border-dashed mt-20 w-full p-4 rounded-md ${
