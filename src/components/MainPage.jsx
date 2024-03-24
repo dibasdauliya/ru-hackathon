@@ -274,7 +274,7 @@ export default function MainPage() {
 
                   {getHowManyTimesTaskIsLeft(task) > 0 ? (
                     <button
-                      className='bg-green-800 text-white p-2 rounded-lg mt-2'
+                      className='bg-green-600 text-white p-2 rounded-lg mt-2'
                       onClick={() =>
                         setDialogDetails({
                           open: true,

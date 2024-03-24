@@ -22,7 +22,7 @@ function App() {
         <div className='flex justify-center pt-10'>
           <button
             onClick={() => loginWithRedirect()}
-            className='bg-green-800 text-white p-4 rounded-lg'>
+            className='bg-green-600 text-white p-4 rounded-lg'>
             Get Started
           </button>
         </div>
