@@ -24,13 +24,13 @@ export default function UploadAvatar() {
   }
 
   return (
-    <div className='h-screen w-screen bg-cover bg-black relative'>
-      <div className='-z-1 pointer-events-none absolute inset-0 bg-black/60'></div>
+    <div className='h-screen w-screen bg-cover bg-white relative'>
+      {/* <div className='-z-1 pointer-events-none absolute inset-0 bg-black/60'></div> */}
 
       <div className='max-w-7xl p-20 mx-auto relative z-10'>
         <nav className='text-white flex w-full justify-center'>
           <Link to='/'>
-            <a className='text-2xl font-semibold text-green-200'>WeFitWell</a>
+            <a className='text-2xl font-semibold text-green-600'>WeFitWell</a>
           </Link>
         </nav>
 
