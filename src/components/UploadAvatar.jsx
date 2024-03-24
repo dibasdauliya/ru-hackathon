@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import PhotoIcon from '../icons/photo'
 import { useRef } from 'react'
-import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
 
 export default function UploadAvatar() {
@@ -23,8 +22,6 @@ export default function UploadAvatar() {
     console.log(file)
     console.log('second')
   }
-
-  const { loginWithRedirect } = useAuth0()
 
   return (
     <div className='h-screen w-screen bg-gym-pic bg-cover bg-black relative'>
