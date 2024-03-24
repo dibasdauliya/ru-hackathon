@@ -6,7 +6,7 @@ import PlusIcon from '../icons/plus'
 export default function MainPage() {
   const { user, isAuthenticated, isLoading } = useAuth0()
 
-  const [username, setUsername] = useState('')
+  const [userDetails, setUserDetails] = useState({ username: '', image: '' })
 
   const [dialogDetails, setDialogDetails] = useState({
     open: false,
@@ -17,38 +17,21 @@ export default function MainPage() {
 
   const [timeDetail, setTime] = useState({ start: '', end: '' })
 
-  const recTasks = [
-    {
-      title: 'Drink Water',
-      description: '2 glasses',
-      duration: '5 minutes',
-      frequency: 4
-    },
-    {
-      title: 'Cardio',
-      description: "Fuel up your heart's health",
-      duration: '30 minutes',
-      frequency: 3
-    },
-    {
-      title: 'Yoga',
-      description: 'Relax your mind and body',
-      duration: '30 minutes',
-      frequency: 2
-    }
-  ]
+  const [recTasks, setRecTasks] = useState([])
+
+  //   get recTasks from local storage
+  useEffect(() => {
+    const recTasks = JSON.parse(localStorage.getItem('recommendations'))
+    setRecTasks(recTasks)
+  }, [])
 
   const [tasks, setTasks] = useState([])
 
   useEffect(() => {
     if (isAuthenticated) {
-      setUsername(user.name)
+      setUserDetails({ username: user.name, image: user.picture })
     }
   }, [isAuthenticated, user])
-
-  if (isLoading) {
-    return <div>Loading ...</div>
-  }
 
   function handleSetTask(e) {
     e.preventDefault()
@@ -128,6 +111,10 @@ export default function MainPage() {
     return task.frequency - tasks.filter((t) => t.title == task.title).length
   }
 
+  if (!recTasks?.length) {
+    return <h1>Loading...</h1>
+  }
+
   return (
     <div className='w-screen min-h-screen bg-gym-pic relative bg-cover p-8'>
       <main className='p-4 bg-white rounded-md mx-auto max-w-3xl'>
@@ -136,7 +123,10 @@ export default function MainPage() {
         <header className='flex gap-6 items-center'>
           <div className='relative w-fit'>
             <img
-              src='https://randomuser.me/api/portraits/men/30.jpg'
+              src={
+                userDetails.image ||
+                `https://randomuser.me/api/portraits/men/30.jpg`
+              }
               alt='avatar'
               className='w-30 h-30 rounded-full border'
             />
@@ -147,7 +137,11 @@ export default function MainPage() {
 
           <div>
             <h1 className='text-3xl font-semibold'>
-              Welcome back, <span className='text-violet-500'>{username}</span>!
+              Welcome back,{' '}
+              <span className='text-violet-500'>
+                {userDetails.username || 'User'}
+              </span>
+              !
             </h1>
             <p>
               {calculateWaterIntakeRatio() > 0.5
@@ -179,7 +173,7 @@ export default function MainPage() {
           <div className='flex-1'>
             <h2 className='text-xl font-semibold'>Daily Water Intake 💧</h2>
             <p className='text-gray-600'>
-              {calculateWaterIntakeRatio() * 100}% completed
+              {(calculateWaterIntakeRatio() * 100).toFixed(2)}% completed
             </p>
           </div>
         </section>
@@ -262,42 +256,46 @@ export default function MainPage() {
         <section className='mt-6'>
           <h2 className='text-xl font-semibold'>Recommended Tasks</h2>
           <div className='grid grid-cols-2 gap-8 mt-4'>
-            {recTasks.map((task, index) => (
-              <div
-                key={index}
-                className='bg-gray-100 p-4 rounded-md flex justify-between gap-2 relative'>
-                {getHowManyTimesTaskIsLeft(task) > 0 ? (
-                  <span className='absolute -left-3 -top-3 bg-white text-black p-1 w-8 h-8 flex items-center justify-center rounded-full border'>
-                    {getHowManyTimesTaskIsLeft(task)}x
-                  </span>
-                ) : null}
+            {recTasks.length > 0 ? (
+              recTasks.map((task, index) => (
+                <div
+                  key={index}
+                  className='bg-gray-100 p-4 rounded-md flex justify-between gap-2 relative'>
+                  {getHowManyTimesTaskIsLeft(task) > 0 ? (
+                    <span className='absolute -left-3 -top-3 bg-white text-black p-1 w-8 h-8 flex items-center justify-center rounded-full border'>
+                      {getHowManyTimesTaskIsLeft(task)}x
+                    </span>
+                  ) : null}
 
-                <div>
-                  <h3 className='text-lg font-semibold'>{task.title}</h3>
-                  <p className='text-gray-600'>{task.description}</p>
+                  <div>
+                    <h3 className='text-lg font-semibold'>{task.title}</h3>
+                    <p className='text-gray-600'>{task.description}</p>
+                  </div>
+
+                  {getHowManyTimesTaskIsLeft(task) > 0 ? (
+                    <button
+                      className='bg-violet-800 text-white p-2 rounded-lg mt-2'
+                      onClick={() =>
+                        setDialogDetails({
+                          open: true,
+                          title: task.title,
+                          description: task.description,
+                          frequency: task.frequency,
+                          duration: task.duration
+                        })
+                      }>
+                      <PlusIcon />
+                    </button>
+                  ) : (
+                    <span className='bg-green-500 text-white p-2 rounded-lg mt-2'>
+                      Done
+                    </span>
+                  )}
                 </div>
-
-                {getHowManyTimesTaskIsLeft(task) > 0 ? (
-                  <button
-                    className='bg-violet-800 text-white p-2 rounded-lg mt-2'
-                    onClick={() =>
-                      setDialogDetails({
-                        open: true,
-                        title: task.title,
-                        description: task.description,
-                        frequency: task.frequency,
-                        duration: task.duration
-                      })
-                    }>
-                    <PlusIcon />
-                  </button>
-                ) : (
-                  <span className='bg-green-500 text-white p-2 rounded-lg mt-2'>
-                    Done
-                  </span>
-                )}
-              </div>
-            ))}
+              ))
+            ) : (
+              <h2>Loading</h2>
+            )}
           </div>
         </section>
 

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import ReccPage from './ReccPage'
 
 const GoalSelection = () => {
   const [goal, setGoal] = useState('')
@@ -6,6 +7,14 @@ const GoalSelection = () => {
   const [showSexInput, setShowSexInput] = useState(false)
   const [age, setAge] = useState('')
   const [showAgeInput, setShowAgeInput] = useState(false)
+  const [weight, setWeight] = useState('')
+  const [showWeightInput, setShowWeightInput] = useState(false)
+  const [height, setHeight] = useState('')
+  const [showHeightInput, setShowHeightInput] = useState(false)
+  const [weightUnit, setWeightUnit] = useState('kg')
+  const [heightUnit, setHeightUnit] = useState('cm')
+
+  const [showBMICalculator, setShowCalculateBMI] = useState(false)
 
   const handleGoalSelection = (selectedGoal) => {
     setGoal(selectedGoal)
@@ -25,22 +34,62 @@ const GoalSelection = () => {
     setAge(e.target.value)
   }
 
+  const handleAgeSubmit = () => {
+    setShowAgeInput(false)
+    setShowWeightInput(true)
+  }
+
+  const handleWeightInput = (e) => {
+    setWeight(e.target.value)
+  }
+
+  const handleWeightSubmit = () => {
+    setShowWeightInput(false)
+    setShowHeightInput(true)
+  }
+
+  const handleHeightInput = (e) => {
+    setHeight(e.target.value)
+  }
+
+  const handleHeightSubmit = () => {
+    setShowHeightInput(false)
+
+    setShowCalculateBMI(true)
+    // Here you can do something with all the collected data
+  }
+
   return (
     <div className='flex flex-col items-center justify-center h-screen'>
-      {goal && !showSexInput && !showAgeInput && (
-        <h1 className='text-3xl mb-4'>What is your Goal?</h1>
+      {goal &&
+        !showSexInput &&
+        !showAgeInput &&
+        !showWeightInput &&
+        !showHeightInput}
+
+      {showBMICalculator && (
+        <ReccPage
+          goal={goal}
+          sex={sex}
+          age={age}
+          weight={weight}
+          height={height}
+          weightUnit={weightUnit}
+          heightUnit={heightUnit}
+        />
       )}
 
       {goal && showSexInput && (
         <>
           <h1 className='text-3xl mb-4'>What is your Sex?</h1>
-          <input
-            type='text'
-            placeholder='Enter Sex'
+          <select
             value={sex}
             onChange={handleSexInput}
-            className='border border-gray-300 rounded-md p-2 mb-4'
-          />
+            className='border border-gray-300 rounded-md p-2 mb-4'>
+            <option value=''>Select Sex</option>
+            <option value='Male'>Male</option>
+            <option value='Female'>Female</option>
+          </select>
           <button
             onClick={handleSexSubmit}
             className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
@@ -53,33 +102,95 @@ const GoalSelection = () => {
         <>
           <h1 className='text-3xl mb-4'>What is your Age?</h1>
           <input
-            type='text'
+            type='number'
             placeholder='Enter Age'
             value={age}
             onChange={handleAgeInput}
             className='border border-gray-300 rounded-md p-2 mb-4'
           />
+          <button
+            onClick={handleAgeSubmit}
+            className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+            Submit
+          </button>
         </>
       )}
 
-      {!goal && (
-        <div className='flex justify-around w-full mb-4'>
+      {goal && !showSexInput && !showAgeInput && showWeightInput && (
+        <>
+          <h1 className='text-3xl mb-4'>What is your Weight?</h1>
+          <input
+            type='number'
+            placeholder={`Enter Weight (${weightUnit})`}
+            value={weight}
+            onChange={handleWeightInput}
+            className='border border-gray-300 rounded-md p-2 mb-4'
+          />
+          <select
+            value={weightUnit}
+            onChange={(e) => setWeightUnit(e.target.value)}
+            className='border border-gray-300 rounded-md p-2 mb-4'>
+            <option value='kg'>kg</option>
+            <option value='lb'>lb</option>
+          </select>
           <button
-            onClick={() => handleGoalSelection('Weightloss')}
+            onClick={handleWeightSubmit}
             className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
-            Weightloss
+            Submit
           </button>
-          <button
-            onClick={() => handleGoalSelection('Bulk')}
-            className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>
-            Bulk
-          </button>
-          <button
-            onClick={() => handleGoalSelection('Maintain')}
-            className='bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded'>
-            Maintain
-          </button>
-        </div>
+        </>
+      )}
+
+      {goal &&
+        !showSexInput &&
+        !showAgeInput &&
+        !showWeightInput &&
+        showHeightInput && (
+          <>
+            <h1 className='text-3xl mb-4'>What is your Height?</h1>
+            <input
+              type='number'
+              placeholder={`Enter Height (${heightUnit})`}
+              value={height}
+              onChange={handleHeightInput}
+              className='border border-gray-300 rounded-md p-2 mb-4'
+            />
+            <select
+              value={heightUnit}
+              onChange={(e) => setHeightUnit(e.target.value)}
+              className='border border-gray-300 rounded-md p-2 mb-4'>
+              <option value='cm'>cm</option>
+              <option value='ft'>ft</option>
+            </select>
+            <button
+              onClick={handleHeightSubmit}
+              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+              Submit
+            </button>
+          </>
+        )}
+
+      {!goal && (
+        <>
+          <h1 className='text-3xl mb-4'>What is your Goal?</h1>
+          <div className='flex justify-around w-full mb-4'>
+            <button
+              onClick={() => handleGoalSelection('Weightloss')}
+              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+              Weightloss
+            </button>
+            <button
+              onClick={() => handleGoalSelection('Bulk')}
+              className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>
+              Bulk
+            </button>
+            <button
+              onClick={() => handleGoalSelection('Maintain')}
+              className='bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded'>
+              Maintain
+            </button>
+          </div>
+        </>
       )}
     </div>
   )
