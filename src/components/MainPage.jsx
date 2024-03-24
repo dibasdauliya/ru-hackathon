@@ -138,7 +138,7 @@ export default function MainPage() {
           <div>
             <h1 className='text-3xl font-semibold'>
               Welcome back,{' '}
-              <span className='text-violet-500'>
+              <span className='text-green-500'>
                 {userDetails.username || 'User'}
               </span>
               !
@@ -236,7 +236,7 @@ export default function MainPage() {
 
               <div className='flex gap-2'>
                 <button
-                  className='bg-violet-800 text-white p-2 rounded-lg mt-4'
+                  className='bg-green-800 text-white p-2 rounded-lg mt-4'
                   type='submit'
                   onClick={handleSetTask}>
                   Add Task
@@ -274,7 +274,7 @@ export default function MainPage() {
 
                   {getHowManyTimesTaskIsLeft(task) > 0 ? (
                     <button
-                      className='bg-violet-800 text-white p-2 rounded-lg mt-2'
+                      className='bg-green-800 text-white p-2 rounded-lg mt-2'
                       onClick={() =>
                         setDialogDetails({
                           open: true,

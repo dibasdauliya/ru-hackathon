@@ -93,7 +93,7 @@ const GoalSelection = () => {
           </select>
           <button
             onClick={handleSexSubmit}
-            className='bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded'>
+            className='bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>
             Submit
           </button>
           </div>
@@ -114,7 +114,7 @@ const GoalSelection = () => {
           />
           <button
             onClick={handleAgeSubmit}
-            className='bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded'>
+            className='bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>
             Submit
           </button>
           </div>
@@ -142,7 +142,7 @@ const GoalSelection = () => {
           </select>
           <button
             onClick={handleWeightSubmit}
-            className='bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded'>
+            className='bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>
             Submit
           </button>
           </div>
@@ -173,7 +173,7 @@ const GoalSelection = () => {
             </select>
             <button
               onClick={handleHeightSubmit}
-              className='bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded'>
+              className='bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>
               Submit
             </button>
             </div>
@@ -187,17 +187,17 @@ const GoalSelection = () => {
           <div className='flex justify-center gap-2 w-full mb-4'>
             <button
               onClick={() => handleGoalSelection('Weightloss')}
-              className='bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded'>
+              className='bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>
               Weight Loss
             </button>
             <button
               onClick={() => handleGoalSelection('Bulk')}
-              className='bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded'>
+              className='bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>
               Bulk
             </button>
             <button
               onClick={() => handleGoalSelection('Maintain')}
-              className='bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded'>
+              className='bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>
               Maintain
             </button>
           </div>

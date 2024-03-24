@@ -7,7 +7,7 @@ function App() {
     <div className='h-screen w-screen bg-hero-pattern bg-cover'>
       <nav className='text-white max-w-7xl p-20 mx-auto'>
         <div className='flex w-full justify-center'>
-          <strong className='text-2xl text-violet-500'>WeFitWell</strong>
+          <strong className='text-2xl text-green-500'>WeFitWell</strong>
         </div>
       </nav>
 
@@ -22,7 +22,7 @@ function App() {
         <div className='flex justify-center pt-10'>
           <button
             onClick={() => loginWithRedirect()}
-            className='bg-violet-800 text-white p-4 rounded-lg'>
+            className='bg-green-800 text-white p-4 rounded-lg'>
             Get Started
           </button>
         </div>

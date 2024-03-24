@@ -33,15 +33,15 @@ export default function UploadAvatar() {
       <div className='max-w-7xl p-20 mx-auto relative z-10'>
         <nav className='text-white flex w-full justify-center'>
           <Link to='/'>
-            <a className='text-2xl font-semibold text-violet-500'>WeFitWell</a>
+            <a className='text-2xl font-semibold text-green-200'>WeFitWell</a>
           </Link>
         </nav>
 
         <main className='flex items-center mx-auto text-black mb-12'>
           <form
             method='post'
-            className={`max-w-4xl mx-auto border-2 border-violet-500 border-dashed mt-20 w-full p-4 rounded-md ${
-              isDropping ? 'bg bg-violet-200' : 'bg-white'
+            className={`max-w-4xl mx-auto border-2 border-green-500 border-dashed mt-20 w-full p-4 rounded-md ${
+              isDropping ? 'bg bg-green-200' : 'bg-white'
             } grid place-items-center`}
             onDragEnter={() => setIsDropping(true)}
             onDragOver={(e) => {
@@ -72,7 +72,7 @@ export default function UploadAvatar() {
         <div className='mx-auto text-center'>
           <Link
             to='/setgoal'
-            className='bg-violet-800 text-white p-4 rounded-lg mt-10 mx-auto'>
+            className='bg-green-600 text-white p-4 rounded-lg mt-10 mx-auto'>
             Set Goal
           </Link>
         </div>
