@@ -1,4 +1,4 @@
-# wefit - Fitness App with Personalized Avatar Companion
+# WeFitWell - Fitness App with Personalized Avatar Companion
 
 Demo link: https://ru-hackathon-six.vercel.app/
 
@@ -40,6 +40,6 @@ Additionally, our task recommendation engine leverages advanced natural language
 
 This project provided a comprehensive learning experience across technical, human, and psychological domains. We mastered real-time interactive systems, emotion modeling, natural language processing, and robust recommendation engines from a technical standpoint. However, we also gained invaluable insights into user-centric design principles, empathetic human-computer interaction, and the psychological underpinnings of motivation, goal-setting, and behavior change.
 
-## What's next for wefit
+## What's next for WeFitWell
 
 Implementing a 3d character creator engine so people have an active role in creating their avatars. A more accurate recommendation engine tailored to individual user preferences and patterns.
