@@ -47,9 +47,22 @@ export default function UploadAvatar() {
             }}
             onDragLeave={() => setIsDropping(false)}
             onDrop={handleDrop}>
-            <PhotoIcon className='w-20 h-20' />
+            {/* <PhotoIcon className='w-20 h-20' />
+             */}
 
-            <p className='text-lg'>Drag and drop your picture here</p>
+            <p className='text-2xl'>Create your avatar</p>
+
+            <p className='flex gap-4 text-3xl my-4'>
+              <span>😊</span>
+              <span>👦</span>
+              <span>👧</span>
+              <span>👦🏿</span>
+              <span>👧🏿</span>
+              <span>👦🏾</span>
+              <span>👧🏽</span>
+              <span>👦🏽</span>
+            </p>
+
             <p className='mt-4  ml-20'>
               or{' '}
               <input
