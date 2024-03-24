@@ -81,6 +81,7 @@ const GoalSelection = () => {
 
       {goal && showSexInput && (
         <>
+          <div className = "bg-slate-100 w-[25rem] h-[20rem] rounded-md shadow-md flex flex-col items-center justify-center">
           <h1 className='text-3xl mb-4'>What is your Sex?</h1>
           <select
             value={sex}
@@ -92,14 +93,17 @@ const GoalSelection = () => {
           </select>
           <button
             onClick={handleSexSubmit}
-            className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+            className='bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded'>
             Submit
           </button>
+          </div>
+          
         </>
       )}
 
       {goal && !showSexInput && showAgeInput && (
         <>
+          <div className = "bg-slate-100 w-[25rem] h-[20rem] rounded-md shadow-md flex flex-col items-center justify-center">
           <h1 className='text-3xl mb-4'>What is your Age?</h1>
           <input
             type='number'
@@ -110,14 +114,17 @@ const GoalSelection = () => {
           />
           <button
             onClick={handleAgeSubmit}
-            className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+            className='bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded'>
             Submit
           </button>
+          </div>
         </>
+
       )}
 
       {goal && !showSexInput && !showAgeInput && showWeightInput && (
         <>
+          <div className = "bg-slate-100 w-[25rem] h-[20rem] rounded-md shadow-md flex flex-col items-center justify-center">
           <h1 className='text-3xl mb-4'>What is your Weight?</h1>
           <input
             type='number'
@@ -135,9 +142,10 @@ const GoalSelection = () => {
           </select>
           <button
             onClick={handleWeightSubmit}
-            className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+            className='bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded'>
             Submit
           </button>
+          </div>
         </>
       )}
 
@@ -147,6 +155,7 @@ const GoalSelection = () => {
         !showWeightInput &&
         showHeightInput && (
           <>
+            <div className = "bg-slate-100 w-[25rem] h-[20rem] rounded-md shadow-md flex flex-col items-center justify-center">
             <h1 className='text-3xl mb-4'>What is your Height?</h1>
             <input
               type='number'
@@ -164,31 +173,34 @@ const GoalSelection = () => {
             </select>
             <button
               onClick={handleHeightSubmit}
-              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+              className='bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded'>
               Submit
             </button>
+            </div>
           </>
         )}
 
       {!goal && (
         <>
+          <div className = "bg-slate-100 w-[25rem] h-[20rem] rounded-md shadow-md flex flex-col items-center justify-center">
           <h1 className='text-3xl mb-4'>What is your Goal?</h1>
-          <div className='flex justify-around w-full mb-4'>
+          <div className='flex justify-center gap-2 w-full mb-4'>
             <button
               onClick={() => handleGoalSelection('Weightloss')}
-              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
-              Weightloss
+              className='bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded'>
+              Weight Loss
             </button>
             <button
               onClick={() => handleGoalSelection('Bulk')}
-              className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>
+              className='bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded'>
               Bulk
             </button>
             <button
               onClick={() => handleGoalSelection('Maintain')}
-              className='bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded'>
+              className='bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded'>
               Maintain
             </button>
+          </div>
           </div>
         </>
       )}
