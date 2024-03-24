@@ -63,24 +63,22 @@ const GoalSelection = () => {
       )}
 
       {!goal && (
-        <div className='gap-8 justify-around w-full mb-4 max-w-4xl border shadow-lg h-1/2 grid place-items-center p-4 m-8'>
-          <div className='flex gap-8'>
-            <button
-              onClick={() => handleGoalSelection('Weightloss')}
-              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
-              Weightloss
-            </button>
-            <button
-              onClick={() => handleGoalSelection('Bulk')}
-              className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>
-              Bulk
-            </button>
-            <button
-              onClick={() => handleGoalSelection('Maintain')}
-              className='bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded'>
-              Maintain
-            </button>
-          </div>
+        <div className='flex justify-around w-full mb-4'>
+          <button
+            onClick={() => handleGoalSelection('Weightloss')}
+            className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+            Weightloss
+          </button>
+          <button
+            onClick={() => handleGoalSelection('Bulk')}
+            className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>
+            Bulk
+          </button>
+          <button
+            onClick={() => handleGoalSelection('Maintain')}
+            className='bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded'>
+            Maintain
+          </button>
         </div>
       )}
     </div>
