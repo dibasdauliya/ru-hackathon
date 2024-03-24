@@ -60,7 +60,7 @@ VITE_AUTH0_CLIENT_ID=
 
 ## Contributors
 
-- [Dibas Dauliya]('https://github.com/dibasdauliya')
-- [Gaurav Tiwari]('https://github.com/koshishtiwari)
-- [Narayan Khanal]('https://github.com/Nkhanal2002)
-- [Suman Shah]('https://github.com/sumanshah7)
+- [Dibas Dauliya](https://github.com/dibasdauliya)
+- [Gaurav Tiwari](https://github.com/koshishtiwari)
+- [Narayan Khanal](https://github.com/Nkhanal2002)
+- [Suman Shah](https://github.com/sumanshah7)
