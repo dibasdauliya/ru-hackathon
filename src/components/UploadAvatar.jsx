@@ -31,23 +31,16 @@ export default function UploadAvatar() {
       <div className='-z-1 pointer-events-none absolute inset-0 bg-black/60'></div>
 
       <div className='max-w-7xl p-20 mx-auto relative z-10'>
-        <nav className='text-white flex w-full justify-between'>
+        <nav className='text-white flex w-full justify-center'>
           <Link to='/'>
-            <a className='text-2xl font-semibold text-violet-500'>FitoFriend</a>
+            <a className='text-2xl font-semibold text-violet-500'>WeFitWell</a>
           </Link>
-
-          <ul className='flex gap-3'>
-            <li className='underline font-semibold'>Home</li>
-            <li>About</li>
-            <li>Services</li>
-            <li>Contact</li>
-          </ul>
         </nav>
 
-        <main className='flex mx-auto text-black mb-12'>
+        <main className='flex items-center mx-auto text-black mb-12'>
           <form
             method='post'
-            className={`max-w-4xl border-2 border-violet-500 border-dashed mt-20 w-full p-4 rounded-md ${
+            className={`max-w-4xl mx-auto border-2 border-violet-500 border-dashed mt-20 w-full p-4 rounded-md ${
               isDropping ? 'bg bg-violet-200' : 'bg-white'
             } grid place-items-center`}
             onDragEnter={() => setIsDropping(true)}
@@ -76,11 +69,13 @@ export default function UploadAvatar() {
         </main>
         {/* login button */}
 
-        <Link
-          to='/setgoal'
-          className='bg-violet-800 text-white p-4 rounded-lg mt-10'>
-          Set Goal
-        </Link>
+        <div className='mx-auto text-center'>
+          <Link
+            to='/setgoal'
+            className='bg-violet-800 text-white p-4 rounded-lg mt-10 mx-auto'>
+            Set Goal
+          </Link>
+        </div>
       </div>
     </div>
   )

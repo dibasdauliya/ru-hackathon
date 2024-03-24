@@ -6,15 +6,8 @@ function App() {
   return (
     <div className='h-screen w-screen bg-hero-pattern bg-cover'>
       <nav className='text-white max-w-7xl p-20 mx-auto'>
-        <div className='flex w-full justify-between'>
-          <strong className='text-2xl text-violet-500'>FitoFriend</strong>
-
-          <ul className='flex gap-3'>
-            <li className='underline font-semibold'>Home</li>
-            <li>About</li>
-            <li>Services</li>
-            <li>Contact</li>
-          </ul>
+        <div className='flex w-full justify-center'>
+          <strong className='text-2xl text-violet-500'>WeFitWell</strong>
         </div>
       </nav>
 
