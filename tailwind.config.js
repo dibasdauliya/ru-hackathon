@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'hero-pattern': 'url(/bg-img.jpg)'
+        'hero-pattern': 'url(/bg-img.jpg)',
+        'gym-pic': 'url(/gym.jpg)'
       }
     }
   },

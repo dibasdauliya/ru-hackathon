@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 function App() {
   return (
     <div className='h-screen w-screen bg-hero-pattern bg-cover'>
@@ -23,9 +25,11 @@ function App() {
           more!
         </p>
         <div className='flex justify-center pt-10'>
-          <button className='bg-violet-800 text-white p-4 rounded-lg'>
+          <Link
+            to='upload-avatar'
+            className='bg-violet-800 text-white p-4 rounded-lg'>
             Get Started
-          </button>
+          </Link>
         </div>
       </main>
     </div>
