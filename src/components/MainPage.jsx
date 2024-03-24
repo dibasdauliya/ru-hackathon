@@ -128,11 +128,11 @@ export default function MainPage() {
                 `https://randomuser.me/api/portraits/men/30.jpg`
               }
               alt='avatar'
-              className='w-30 h-30 rounded-full border'
+              className='w-14 h-14 rounded-full border'
             />
-            <span className='text-4xl absolute top-0 -right-2'>
+            {/* <span className='text-4xl absolute top-0 -right-2'>
               {calculateWaterIntakeRatio() > 0.9 ? '😊' : '😢'}
-            </span>
+            </span> */}
           </div>
 
           <div>
@@ -152,21 +152,27 @@ export default function MainPage() {
         </header>
 
         {/* current date & time */}
-        <section className='mt-6'>
-          <h2 className='text-xl font-semibold'>
-            {new Date().toLocaleDateString('en-US', {
-              weekday: 'long',
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
-          </h2>
-          <p className='text-gray-600'>
-            {new Date().toLocaleTimeString('en-US', {
-              hour: '2-digit',
-              minute: '2-digit'
-            })}
-          </p>
+        <section className='mt-6 flex justify-between'>
+          <div className='self-center'>
+            <h2 className='text-xl font-semibold'>
+              {new Date().toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </h2>
+            <p className='text-gray-600'>
+              {new Date().toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit'
+              })}
+            </p>
+          </div>
+
+          <span className='text-8xl mr-12'>
+            {calculateWaterIntakeRatio() > 0.9 ? '😊' : '😢'}
+          </span>
         </section>
 
         <section className='flex gap-4 mt-4'>
@@ -255,7 +261,7 @@ export default function MainPage() {
 
         <section className='mt-6'>
           <h2 className='text-xl font-semibold'>Recommended Tasks</h2>
-          <div className='grid grid-cols-2 gap-8 mt-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 mt-4'>
             {recTasks.length > 0 ? (
               recTasks.map((task, index) => (
                 <div
@@ -303,7 +309,7 @@ export default function MainPage() {
 
         <section className='mt-6'>
           <h2 className='text-xl font-semibold'>Today's Schedule</h2>
-          <div className='grid grid-cols-2 gap-4 mt-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4'>
             {tasks.length > 0 ? (
               tasks.map((task, index) => (
                 <div
