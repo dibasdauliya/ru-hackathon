@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import UploadAvatar from './components/UploadAvatar.jsx'
 import { Auth0ProviderWithNavigate } from './auth0-provider.jsx'
 import ChooseGoal from './components/ChooseGoal.jsx'
+import MainPage from './components/MainPage.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Auth0ProviderWithNavigate>
         <Routes>
           <Route path='/' element={<App />} />
+          <Route path='/main' element={<MainPage />} />
           <Route path='/setgoal' element={<ChooseGoal />} />
           <Route path='/upload-avatar' element={<UploadAvatar />} />
         </Routes>
